@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taman Bunga - Rayuan untuk Zahra</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to top, #87ceeb 0%, #e0f7fa 100%);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .scene {
+      position: absolute; bottom: 0; width: 100%; height: 100%; overflow: hidden;
+    }
+    .hill {
+      position: absolute; bottom: 0; width: 200%; height: 60%;
+      background: radial-gradient(circle at 50% 100%, #66bb6a 40%, #2e7d32 100%);
+      border-radius: 50%; left: -50%;
+    }
+    .flower {
+      position: absolute; bottom: 0;
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      animation: swayFlower 4s ease-in-out infinite;
+    }
+    @keyframes swayFlower {
+      0%,100% { transform: rotate(0deg) translateY(0); }
+      50% { transform: rotate(2deg) translateY(-2px); }
+    }
+    .wind {
+      position: absolute;
+      top: 20%; left: -200px;
+      width: 200px; height: 40px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.5);
+      animation: windBlow 6s linear infinite;
+    }
+    @keyframes windBlow {
+      0%{left:-250px;opacity:0;}
+      20%{opacity:1;}
+      50%{left:100%;opacity:1;}
+      100%{left:110%;opacity:0;}
+    }
+
+    /* Kotak pesan */
+    #messageBox {
+      position: relative; z-index: 10;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px 30px;
+      border-radius: 15px;
+      border: 3px solid #ff69b4;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+      font-size: 1.4em;
+      max-width: 600px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover { background: #ff1493; }
+
+    /* Heart blink */
+    .heart-big {
+      font-size: 30vw;
+      animation: heartColors 1.6s infinite;
+    }
+    @keyframes heartColors {
+      0%   { color: red; }
+      25%  { color: blue; }
+      50%  { color: white; }
+      75%  { color: yellow; }
+      100% { color: red; }
+    }
+
+    /* Emotikon 3D */
+    .character {
+      position: absolute;
+      bottom: 100px;
+      right: 10%;
+      width: 200px;
+      z-index: 9;
+    }
+  </style>
+</head>
+<body>
+  <div class="scene">
+    <div class="hill"></div>
+    <div class="flower" style="left:15%; background:pink;"></div>
+    <div class="flower" style="left:25%; background:yellow;"></div>
+    <div class="flower" style="left:35%; background:red;"></div>
+    <div class="flower" style="left:45%; background:purple;"></div>
+    <div class="flower" style="left:55%; background:orange;"></div>
+    <div class="flower" style="left:65%; background:pink;"></div>
+    <div class="flower" style="left:75%; background:blue;"></div>
+    <div class="flower" style="left:85%; background:yellow;"></div>
+    <div class="wind"></div>
+  </div>
+
+  <!-- Karakter 3D tersenyum bawa mawar -->
+  <img src="emote_bawa_mawar.png" alt="Karakter 3D bawa mawar" class="character">
+
+  <div id="messageBox"></div>
+  <button id="nextBtn">Mulai</button>
+
+  <script>
+    const messages = [
+      "Hai",
+      "Aku gatau hari kemarin keknya kamu capek bangettt yaa",
+      "Tapii kamuu tetepp haruss cemangatttt🔥🔥🔥",
+      "Keep fighting 😤😤😤",
+      "Demi semua yang kamu perjuangin",
+      "Demi semua yang meragukan kamu",
+      "Dann",
+      "Aku disinii",
+      "Look at mee",
+      "Aku ada disinii Zahraa",
+      "Aku disini untuk temenin kamuuu",
+      "Kalo kamu capek",
+      "Kalo kamuu lelahh",
+      "Kalo kamu lagi pengen sharing",
+      "Need a friend to Mabar, walau ngetrol gass ajahhh",
+      "Call mee",
+      "IM here",
+      "Tapi yang mau ku sampein Adalah",
+      "Semangatttt teyusss cayangggg🤗🤗🤗",
+      "Wopyuuuu🫶🫶🫶"
+    ];
+
+    let index = 0;
+    const messageDiv = document.getElementById("messageBox");
+    const nextBtn = document.getElementById("nextBtn");
+
+    nextBtn.addEventListener("click", () => {
+      if (index < messages.length) {
+        messageDiv.textContent = messages[index];
+        index++;
+        if (index === 1) nextBtn.textContent = "Lanjutkan";
+      } else {
+        messageDiv.innerHTML = '<div class="heart-big">❤</div>';
+        nextBtn.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>
